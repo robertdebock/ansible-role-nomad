@@ -4,6 +4,7 @@
   template:
     src: server.hcl.j2
     dest: /etc/nomad/server.hcl
+    mode: "0640"
   notify:
     - restart nomad server
 
