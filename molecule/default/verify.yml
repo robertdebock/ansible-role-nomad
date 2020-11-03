@@ -24,4 +24,4 @@
         - name: stop example job
           command: nomad job stop example
       when:
-        - ansible_connection != "docker"    
+        - ansible_connection != "docker"
