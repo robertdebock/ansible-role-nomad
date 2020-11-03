@@ -15,7 +15,7 @@
     service_list:
       - name: nomad-agent
         description: The nomad agent
-        start_command: nomad agent -config /etc/nomad/agent.hcl
+        start_command: /usr/bin/nomad agent -config /etc/nomad/agent.hcl
 
 - name: start nomad agent
   service:

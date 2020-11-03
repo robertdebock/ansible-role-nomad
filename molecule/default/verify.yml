@@ -5,5 +5,23 @@
   gather_facts: no
 
   tasks:
-    - name: check if connection still works
-      ping:
+    - name: check server members
+      command: nomad server members
+
+    - name: check node status
+      command: nomad node status
+
+    - name: initialize example job
+      command: nomad init example.nomad
+      args:
+        creates: example.nomad
+
+    - name: run and stop example job
+      block:
+        - name: run example job
+          command: nomad job run example.nomad
+
+        - name: stop example job
+          command: nomad job stop example
+      when:
+        - ansible_connection != "docker"    
