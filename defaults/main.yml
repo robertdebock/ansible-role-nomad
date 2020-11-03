@@ -12,7 +12,7 @@ nomad_server_data_dir: /tmp/server
 nomad_server_bootstrap_expect: 1
 
 # This this to "yes" for an agent.
-nomad_agent: yes
+nomad_agent: no
 
 # Configuration items for the Nomad agent
 nomad_agent_log_level: INFO
