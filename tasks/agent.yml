@@ -1,0 +1,23 @@
+---
+
+- name: configure nomad agent
+  template:
+    src: agent.hcl.j2
+    dest: /etc/nomad/agent.hcl
+  notify:
+    - restart nomad agent
+
+- name: create nomad agent service
+  include_role:
+    name: robertdebock.service
+  vars:
+    service_list:
+      - name: nomad-agent
+        description: The nomad agent
+        start_command: nomad agent -config /etc/nomad/agent.hcl
+
+- name: start nomad agent
+  service:
+    name: nomad-agent
+    state: started
+    enabled: yes

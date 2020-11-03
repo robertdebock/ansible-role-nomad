@@ -1,0 +1,8 @@
+---
+# vars file for nomad
+
+# This variable is used to create services.
+service_list:
+  - name: nomad-server
+    description: The nomad server
+    start_command: nomad agent -config /etc/nomad/server.hcl

@@ -1,0 +1,22 @@
+---
+# tasks file for nomad
+
+- name: include assert.yml
+  include_tasks: assert.yml
+  run_once: yes
+
+- name: create /etc/nomad
+  file:
+    path: /etc/nomad
+    state: directory
+    mode: "0750"
+
+- name: include server.yml
+  include_tasks: server.yml
+  when:
+    - nomad_server | bool
+
+- name: include agent.yml
+  include_tasks: agent.yml
+  when:
+    - nomad_agent | bool

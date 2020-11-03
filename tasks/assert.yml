@@ -1,0 +1,105 @@
+---
+- name: test if nomdad_server is set correctly
+  assert:
+    that:
+      - nomad_server is defined
+      - nomad_server | type_debug == "bool"
+    quiet: yes
+
+- name: test if nomad_server_log_level is set correctly
+  assert:
+    that:
+      - nomad_server_log_level is defined
+      - nomad_server_log_level in ["DEBUG", "INFO", "WARN"]
+    quiet: yes
+  when:
+    - nomad_server | bool
+
+- name: test if nomad_server_data_dir is set correctly
+  assert:
+    that:
+      - nomad_server_data_dir is defined
+      - nomad_server_data_dir | length > 0
+    quiet: yes
+  when:
+    - nomad_server | bool
+
+- name: test if nomad_server_bootstrap_expect is set correctly
+  assert:
+    that:
+      - nomad_server_bootstrap_expect is defined
+      - nomad_server_bootstrap_expect | int
+    quiet: yes
+  when:
+    - nomad_server | bool
+
+- name: test if nomad_server_bootstrap_expect is set correctly
+  assert:
+    that:
+      - nomad_server_bootstrap_expect | int is not divisibleby 2
+    fail_msg: "This parameter should be odd, it's even."
+    quiet: yes
+  when:
+    - nomad_server | bool
+
+
+- name: test if nomdad_agent is set correctly
+  assert:
+    that:
+      - nomad_agent is defined
+      - nomad_agent | type_debug == "bool"
+    quiet: yes
+
+- name: test if nomad_agent_log_level is set correctly
+  assert:
+    that:
+      - nomad_agent_log_level is defined
+      - nomad_agent_log_level in ["DEBUG", "INFO", "WARN"]
+    quiet: yes
+  when:
+    - nomad_agent | bool
+
+- name: test if nomad_agent_data_dir is set correctly
+  assert:
+    that:
+      - nomad_agent_data_dir is defined
+      - nomad_agent_data_dir | length > 0
+    quiet: yes
+  when:
+    - nomad_agent | bool
+
+- name: test if nomad_agent_port is set correctly
+  assert:
+    that:
+      - nomad_agent_port is defined
+      - nomad_agent_port | int
+      - nomad_agent_port | int > 0
+      - nomad_agent_port | int < 65536
+    quiet: yes
+  when:
+    - nomad_agent | bool
+
+- name: test if nomad_agent_servers is set correctly
+  assert:
+    that:
+      - nomad_agent_servers is defined
+      - nomad_agent_servers | length > 0
+      - nomad_agent_servers is iterable
+    quiet: yes
+  when:
+    - nomad_agent | bool
+
+- name: test if item in nomad_agent_servers is set correctly
+  assert:
+    that:
+      - item.name is defined
+      - item.port is defined
+      - item.port | int
+      - item.port | int > 0
+      - item.port | int < 65536
+    quiet: yes
+  loop: "{{ nomad_agent_servers }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - nomad_agent | bool
