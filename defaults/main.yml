@@ -5,8 +5,9 @@
 nomad_server: yes
 
 # Configuration items for the Nomad server
-nomad_server_log_level: INFO
 nomad_server_data_dir: /tmp/server
+nomad_server_bind_addr: 0.0.0.0
+nomad_server_log_level: INFO
 
 # How many servers and agents are expected?
 nomad_server_bootstrap_expect: 1

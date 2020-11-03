@@ -1,10 +1,19 @@
 ---
-- name: test if nomdad_server is set correctly
+- name: test if nomad_server is set correctly
   assert:
     that:
       - nomad_server is defined
       - nomad_server | type_debug == "bool"
     quiet: yes
+
+- name: test if nomad_server_bind_addr is set correctly
+  assert:
+    that:
+      - nomad_server_bind_addr is defined
+      - nomad_server_bind_addr | length > 0
+    quiet: yes
+  when:
+    - nomad_server | bool
 
 - name: test if nomad_server_log_level is set correctly
   assert:
@@ -103,3 +112,10 @@
     label: "{{ item.name }}"
   when:
     - nomad_agent | bool
+
+- name: test if nomad_server and nomad_agent are set correctly
+  assert:
+    that:
+      - nomad_server != nomad_agent
+    fail_msg: "Either nomad_server or nomad_agent can be enabled."
+    quiet: yes

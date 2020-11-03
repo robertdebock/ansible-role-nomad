@@ -1,12 +1,7 @@
 ---
 # handlers file for nomad
 
-- name: restart nomad server
+- name: restart nomad
   service:
-    name: nomad-server
-    state: restarted
-
-- name: restart nomad agent
-  service:
-    name: nomad-agent
+    name: nomad
     state: restarted

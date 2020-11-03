@@ -5,18 +5,40 @@
   include_tasks: assert.yml
   run_once: yes
 
-- name: create /etc/nomad
+- name: create /etc/nomad.d
   file:
     path: /etc/nomad
     state: directory
     mode: "0750"
+    owner: nomad
+    group: nomad
 
-- name: include server.yml
-  include_tasks: server.yml
+- name: configure nomad server
+  template:
+    src: server.hcl.j2
+    dest: /etc/nomad.d/nomad.hcl
+    mode: "0640"
+    owner: nomad
+    group: nomad
+  notify:
+    - restart nomad
   when:
     - nomad_server | bool
 
-- name: include agent.yml
-  include_tasks: agent.yml
+- name: configure nomad agent
+  template:
+    src: agent.hcl.j2
+    dest: /etc/nomad.d/nomad.hcl
+    mode: "0640"
+    owner: nomad
+    group: nomad
+  notify:
+    - restart nomad
   when:
     - nomad_agent | bool
+
+- name: start nomad
+  service:
+    name: nomad
+    state: started
+    enabled: yes

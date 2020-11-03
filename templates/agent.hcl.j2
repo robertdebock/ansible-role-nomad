@@ -1,11 +1,8 @@
-# Increase log verbosity
+{{ ansible_managed | comment }}
+
 log_level = "{{ nomad_agent_log_level }}"
-
-# Setup data dir
-data_dir = "{{ nomad_agent_data_dir }}"
-
-# Give the agent a unique name. Defaults to hostname
-name = "{{ nomad_agent_name }}"
+data_dir  = "{{ nomad_agent_data_dir }}"
+name      = "{{ nomad_agent_name }}"
 
 # Enable the client
 client {

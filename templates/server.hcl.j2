@@ -1,8 +1,8 @@
-# Increase log verbosity
-log_level = "{{ nomad_server_log_level }}"
+{{ ansible_managed | comment }}
 
-# Setup data dir
-data_dir = "{{ nomad_server_data_dir }}"
+data_dir  = "{{ nomad_server_data_dir }}"
+bind_addr = "{{ nomad_server_bind_addr }}"
+log_level = "{{ nomad_server_log_level }}"
 
 # Enable the server
 server {

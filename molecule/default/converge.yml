@@ -6,5 +6,3 @@
 
   roles:
     - role: ansible-role-nomad
-      nomad_agent: yes
-      nomad_agent_name: my_node
