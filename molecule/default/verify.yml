@@ -25,3 +25,7 @@
           command: nomad job stop example
       when:
         - ansible_connection != "docker"
+
+    - name: check the ui
+      uri:
+        url: "http://localhost:4646/ui/"

@@ -4,7 +4,7 @@ Install and configure Nomad.
 
 |Travis|GitHub|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-nomad.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-nomad)|[![github](https://github.com/robertdebock/ansible-role-nomad/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-nomad/actions)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/nomad)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/nomad)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-nomad.svg)](https://github.com/robertdebock/ansible-role-nomad/releases/)|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-nomad.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-nomad)|[![github](https://github.com/robertdebock/ansible-role-nomad/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-nomad/actions)|[![quality](https://img.shields.io/ansible/quality/51615)](https://galaxy.ansible.com/robertdebock/nomad)|[![downloads](https://img.shields.io/ansible/role/d/51615)](https://galaxy.ansible.com/robertdebock/nomad)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-nomad.svg)](https://github.com/robertdebock/ansible-role-nomad/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -18,8 +18,6 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.nomad
-      nomad_agent: yes
-      nomad_agent_name: my_node
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
@@ -36,12 +34,18 @@ The machine needs to be prepared in CI this is done using `molecule/resources/pr
     - role: robertdebock.buildtools
     - role: robertdebock.epel
     - role: robertdebock.python_pip
+    - role: robertdebock.grub
+      grub_options:
+        - option: cgroup_enable
+          value: memory
+        - option: systemd.unified_cgroup_hierarchy
+          value: 0
     - role: robertdebock.docker
     - role: robertdebock.hashicorp
       hashicorp_products:
         - nomad
 ```
-```
+
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
 ## [Role Variables](#role-variables)
@@ -55,8 +59,9 @@ These variables are set in `defaults/main.yml`:
 nomad_server: yes
 
 # Configuration items for the Nomad server
-nomad_server_log_level: INFO
 nomad_server_data_dir: /tmp/server
+nomad_server_bind_addr: 0.0.0.0
+nomad_server_log_level: INFO
 
 # How many servers and agents are expected?
 nomad_server_bootstrap_expect: 1
