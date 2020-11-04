@@ -1,10 +1,11 @@
 ---
 roles:
   - name: robertdebock.bootstrap
-  - name: robertdebock.hashicorp
-  - name: robertdebock.service
-  - name: robertdebock.core_dependencies
   - name: robertdebock.buildtools
-  - name: robertdebock.epel
-  - name: robertdebock.python_pip
+  - name: robertdebock.core_dependencies
   - name: robertdebock.docker
+  - name: robertdebock.epel
+  - name: robertdebock.grub
+  - name: robertdebock.hashicorp
+  - name: robertdebock.python_pip
+  - name: robertdebock.service
