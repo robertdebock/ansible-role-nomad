@@ -42,3 +42,22 @@
     name: nomad
     state: started
     enabled: yes
+
+- name: determine nomad leader
+  set_fact:
+    nomad_leader: "{{ ansible_hostname }}"
+  run_once: yes
+  when:
+    - nomad_server | bool
+
+- name: list server members
+  command: nomad server members
+  register: nomad_list_server_members
+  changed_when: no
+
+- name: join nomad leader
+  command: nomad server join {{ nomad_leader }}:4648
+  register: nomad_join_nomad_leader
+  when:
+    - ansible_hostname != nomad_server
+    - ansible_hostname not in nomad_list_server_members.stdout
