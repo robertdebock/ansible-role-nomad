@@ -54,6 +54,8 @@
   command: nomad server members
   register: nomad_list_server_members
   changed_when: no
+  when:
+    - nomad_server | bool
 
 - name: join nomad leader
   command: nomad server join {{ nomad_leader }}:4648
