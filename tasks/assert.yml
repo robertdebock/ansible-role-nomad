@@ -19,7 +19,7 @@
   assert:
     that:
       - nomad_server_log_level is defined
-      - nomad_server_log_level in ["DEBUG", "INFO", "WARN"]
+      - nomad_server_log_level in [ "DEBUG", "INFO", "WARN" ]
     quiet: yes
   when:
     - nomad_server | bool
@@ -63,7 +63,7 @@
   assert:
     that:
       - nomad_agent_log_level is defined
-      - nomad_agent_log_level in ["DEBUG", "INFO", "WARN"]
+      - nomad_agent_log_level in [ "DEBUG", "INFO", "WARN" ]
     quiet: yes
   when:
     - nomad_agent | bool
