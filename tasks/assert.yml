@@ -37,7 +37,7 @@
   assert:
     that:
       - nomad_server_bootstrap_expect is defined
-      - nomad_server_bootstrap_expect | int
+      - nomad_server_bootstrap_expect is number
     quiet: yes
   when:
     - nomad_server | bool
