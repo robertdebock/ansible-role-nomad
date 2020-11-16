@@ -43,7 +43,7 @@
 - name: test if nomad_server_bootstrap_expect is set correctly
   assert:
     that:
-      - nomad_server_bootstrap_expect | int is not divisibleby 2
+      - nomad_server_bootstrap_expect is not divisibleby 2
     fail_msg: "This parameter should be odd, it's even."
     quiet: yes
   when:
@@ -78,9 +78,9 @@
   assert:
     that:
       - nomad_agent_port is defined
-      - nomad_agent_port | int
-      - nomad_agent_port | int > 0
-      - nomad_agent_port | int < 65536
+      - nomad_agent_port
+      - nomad_agent_port > 0
+      - nomad_agent_port < 65536
     quiet: yes
   when:
     - nomad_agent | bool
@@ -99,9 +99,9 @@
     that:
       - item.name is defined
       - item.port is defined
-      - item.port | int
-      - item.port | int > 0
-      - item.port | int < 65536
+      - item.port
+      - item.port > 0
+      - item.port < 65536
     quiet: yes
   loop: "{{ nomad_agent_servers }}"
   loop_control:
