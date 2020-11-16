@@ -10,7 +10,6 @@
   assert:
     that:
       - nomad_server_bind_addr is defined
-      - nomad_server_bind_addr | length > 0
     quiet: yes
   when:
     - nomad_server | bool
@@ -28,7 +27,6 @@
   assert:
     that:
       - nomad_server_data_dir is defined
-      - nomad_server_data_dir | length > 0
     quiet: yes
   when:
     - nomad_server | bool
@@ -72,7 +70,6 @@
   assert:
     that:
       - nomad_agent_data_dir is defined
-      - nomad_agent_data_dir | length > 0
     quiet: yes
   when:
     - nomad_agent | bool
@@ -92,7 +89,6 @@
   assert:
     that:
       - nomad_agent_servers is defined
-      - nomad_agent_servers | length > 0
       - nomad_agent_servers is iterable
     quiet: yes
   when:
