@@ -49,7 +49,6 @@
   when:
     - nomad_server | bool
 
-
 - name: test if nomdad_agent is set correctly
   assert:
     that:
