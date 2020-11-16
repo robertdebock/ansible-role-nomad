@@ -3,7 +3,7 @@
   assert:
     that:
       - nomad_server is defined
-      - nomad_server | type_debug == "bool"
+      - nomad_server is boolean
     quiet: yes
 
 - name: test if nomad_server_bind_addr is set correctly
@@ -56,7 +56,7 @@
   assert:
     that:
       - nomad_agent is defined
-      - nomad_agent | type_debug == "bool"
+      - nomad_agent is boolean
     quiet: yes
 
 - name: test if nomad_agent_log_level is set correctly
