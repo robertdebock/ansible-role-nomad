@@ -5,7 +5,9 @@
 
 name: "TODO 2 Issue"
 
-on: ["push"]
+on:
+  push:
+
 jobs:
   build:
     runs-on: "ubuntu-20.04"
