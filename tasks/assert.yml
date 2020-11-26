@@ -1,4 +1,5 @@
 ---
+
 - name: test if nomad_server is set correctly
   assert:
     that:
