@@ -11,6 +11,7 @@
   assert:
     that:
       - nomad_server_bind_addr is defined
+      - nomad_server_bind_addr is string
     quiet: yes
   when:
     - nomad_server | bool
@@ -19,6 +20,7 @@
   assert:
     that:
       - nomad_server_log_level is defined
+      - nomad_server_log_level is string
       - nomad_server_log_level in [ "DEBUG", "INFO", "WARN" ]
     quiet: yes
   when:
@@ -28,6 +30,7 @@
   assert:
     that:
       - nomad_server_data_dir is defined
+      - nomad_server_data_dir is string
     quiet: yes
   when:
     - nomad_server | bool
@@ -61,6 +64,7 @@
   assert:
     that:
       - nomad_agent_log_level is defined
+      - nomad_agent_log_level is sting
       - nomad_agent_log_level in [ "DEBUG", "INFO", "WARN" ]
     quiet: yes
   when:
@@ -70,6 +74,7 @@
   assert:
     that:
       - nomad_agent_data_dir is defined
+      - nomad_agent_data_dir is string
     quiet: yes
   when:
     - nomad_agent | bool
@@ -78,7 +83,7 @@
   assert:
     that:
       - nomad_agent_port is defined
-      - nomad_agent_port
+      - nomad_agent_port is number
       - nomad_agent_port > 0
       - nomad_agent_port < 65536
     quiet: yes
@@ -98,8 +103,9 @@
   assert:
     that:
       - item.name is defined
+      - item.name is string
       - item.port is defined
-      - item.port
+      - item.port is number
       - item.port > 0
       - item.port < 65536
     quiet: yes
