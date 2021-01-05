@@ -79,17 +79,6 @@
   when:
     - nomad_agent | bool
 
-- name: test if nomad_agent_port is set correctly
-  assert:
-    that:
-      - nomad_agent_port is defined
-      - nomad_agent_port is number
-      - nomad_agent_port > 0
-      - nomad_agent_port < 65536
-    quiet: yes
-  when:
-    - nomad_agent | bool
-
 - name: test if nomad_agent_servers is set correctly
   assert:
     that:

@@ -64,8 +64,6 @@ nomad_agent_log_level: INFO
 nomad_agent_data_dir: /tmp/agent
 nomad_agent_name: "{{ inventory_hostname }}"
 
-nomad_agent_port: 5656
-
 nomad_agent_servers:
   - name: 127.0.0.1
     port: 4647
