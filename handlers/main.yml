@@ -2,7 +2,7 @@
 # handlers file for nomad
 
 - name: restart nomad
-  service:
+  ansible.builtin.service:
     name: nomad
     state: restarted
   when:

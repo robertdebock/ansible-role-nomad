@@ -1,14 +1,14 @@
 ---
 
 - name: test if nomad_server is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - nomad_server is defined
       - nomad_server is boolean
     quiet: yes
 
 - name: test if nomad_server_bind_addr is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - nomad_server_bind_addr is defined
       - nomad_server_bind_addr is string
@@ -17,7 +17,7 @@
     - nomad_server | bool
 
 - name: test if nomad_server_log_level is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - nomad_server_log_level is defined
       - nomad_server_log_level is string
@@ -27,7 +27,7 @@
     - nomad_server | bool
 
 - name: test if nomad_server_data_dir is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - nomad_server_data_dir is defined
       - nomad_server_data_dir is string
@@ -36,7 +36,7 @@
     - nomad_server | bool
 
 - name: test if nomad_server_bootstrap_expect is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - nomad_server_bootstrap_expect is defined
       - nomad_server_bootstrap_expect is number
@@ -45,7 +45,7 @@
     - nomad_server | bool
 
 - name: test if nomad_server_bootstrap_expect is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - nomad_server_bootstrap_expect is not divisibleby 2
     fail_msg: "This parameter should be odd, it's even."
@@ -54,14 +54,14 @@
     - nomad_server | bool
 
 - name: test if nomdad_agent is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - nomad_agent is defined
       - nomad_agent is boolean
     quiet: yes
 
 - name: test if nomad_agent_log_level is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - nomad_agent_log_level is defined
       - nomad_agent_log_level is sting
@@ -71,7 +71,7 @@
     - nomad_agent | bool
 
 - name: test if nomad_agent_data_dir is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - nomad_agent_data_dir is defined
       - nomad_agent_data_dir is string
@@ -80,7 +80,7 @@
     - nomad_agent | bool
 
 - name: test if nomad_agent_servers is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - nomad_agent_servers is defined
       - nomad_agent_servers is iterable
@@ -89,7 +89,7 @@
     - nomad_agent | bool
 
 - name: test if item in nomad_agent_servers is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
@@ -105,7 +105,7 @@
     - nomad_agent | bool
 
 - name: test if nomad_server and nomad_agent are set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - nomad_server != nomad_agent
     fail_msg: "Either nomad_server or nomad_agent can be enabled."
