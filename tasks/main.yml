@@ -7,7 +7,7 @@
   delegate_to: localhost
 
 - name: create /etc/nomad.d
-  file:
+  ansible.builtin.file:
     path: /etc/nomad
     state: directory
     mode: "0750"
@@ -15,7 +15,7 @@
     group: nomad
 
 - name: configure nomad server
-  template:
+  ansible.builtin.template:
     src: server.hcl.j2
     dest: /etc/nomad.d/nomad.hcl
     mode: "0640"
@@ -27,7 +27,7 @@
     - nomad_server | bool
 
 - name: configure nomad agent
-  template:
+  ansible.builtin.template:
     src: agent.hcl.j2
     dest: /etc/nomad.d/nomad.hcl
     mode: "0640"
@@ -39,13 +39,13 @@
     - nomad_agent | bool
 
 - name: start nomad
-  service:
+  ansible.builtin.service:
     name: nomad
     state: started
     enabled: yes
 
 - name: determine nomad leader
-  set_fact:
+  ansible.builtin.set_fact:
     nomad_leader: "{{ ansible_hostname }}"
   run_once: yes
   when:
