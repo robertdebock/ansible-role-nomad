@@ -27,5 +27,5 @@
         - ansible_connection != "docker"
 
     - name: check the ui
-      uri:
+      ansible.builtin.uri:
         url: "http://localhost:4646/ui/"
