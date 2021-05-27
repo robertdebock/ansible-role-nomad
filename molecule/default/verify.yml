@@ -6,23 +6,28 @@
 
   tasks:
     - name: check server members
-      command: nomad server members
+      ansible.builtin.command:
+        cmd: nomad server members
 
     - name: check node status
-      command: nomad node status
+      ansible.builtin.command:
+        cmd: nomad node status
 
     - name: initialize example job
-      command: nomad init example.nomad
+      ansible.builtin.command:
+        cmd: nomad init example.nomad
       args:
         creates: example.nomad
 
     - name: run and stop example job
       block:
         - name: run example job
-          command: nomad job run example.nomad
+          ansible.builtin.command:
+            cmd: nomad job run example.nomad
 
         - name: stop example job
-          command: nomad job stop example
+          ansible.builtin.command:
+            cmd: nomad job stop example
       when:
         - ansible_connection != "docker"
 
