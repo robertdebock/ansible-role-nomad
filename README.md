@@ -32,8 +32,6 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
     - role: robertdebock.bootstrap
     - role: robertdebock.core_dependencies
     - role: robertdebock.hashicorp
-      hashicorp_products:
-        - name: nomad
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
