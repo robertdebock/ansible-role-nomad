@@ -10,6 +10,8 @@
   ansible.builtin.package:
     name: nomad
     state: present
+  when:
+    - nomad_install_package
 
 - name: create /etc/nomad.d
   ansible.builtin.file:
