@@ -1,19 +1,15 @@
 ---
 image: "robertdebock/github-action-molecule:4.0.8"
 
-# services:
-#   - docker:dind
-
 variables:
   PY_COLORS: 1
 
 molecule:
   script:
     - if [ -f tox.ini ] ; then tox ; fi
-    - if [ ! -f tox.ini ; then molecule test ; fi
+    - if [ ! -f tox.ini ] ; then molecule test ; fi
   rules:
     - if: $CI_COMMIT_REF_NAME == "master"
-  retry: 1
   parallel:
     matrix:
       - image: "enterpriselinux"
@@ -21,9 +17,7 @@ molecule:
       - image: "debian"
         tag: "latest"
       - image: "fedora"
-        tag: "35"
-      - image: "fedora"
-        tag: "latest"
+        tag: "36"
       - image: "ubuntu"
         tag: "latest"
       - image: "ubuntu"
