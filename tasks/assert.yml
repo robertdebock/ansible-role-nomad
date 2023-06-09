@@ -19,6 +19,7 @@
     that:
       - nomad_server_bind_addr is defined
       - nomad_server_bind_addr is string
+      - nomad_server_bind_addr is not none
     quiet: yes
   when:
     - nomad_server
@@ -38,6 +39,7 @@
     that:
       - nomad_server_data_dir is defined
       - nomad_server_data_dir is string
+      - nomad_server_data_dir is not none
     quiet: yes
   when:
     - nomad_server
@@ -82,6 +84,7 @@
     that:
       - nomad_agent_data_dir is defined
       - nomad_agent_data_dir is string
+      - nomad_agent_data_dir is not none
     quiet: yes
   when:
     - nomad_agent
@@ -100,6 +103,7 @@
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
       - item.port is defined
       - item.port is number
       - item.port > 0
