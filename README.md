@@ -1,4 +1,4 @@
-# Ansible role [nomad](#nomad)
+# [Ansible role nomad](#nomad)
 
 Install and configure Nomad.
 
