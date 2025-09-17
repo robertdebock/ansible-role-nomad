@@ -72,6 +72,7 @@
     cmd: nomad server join {{ nomad_leader }}:4648
   register: nomad_join_nomad_leader
   when:
-    - ansible_hostname != nomad_server
+    - nomad_server
+    - ansible_hostname != nomad_leader
     - ansible_hostname not in nomad_list_server_members.stdout
   changed_when: true
