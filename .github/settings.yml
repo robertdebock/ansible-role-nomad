@@ -5,4 +5,4 @@
 repository:
   description: Install and configure Nomad.
   homepage: https://robertdebock.nl/
-  topics: hashicorp, nomad, server, agent, cluster, ansible, molecule, tox, playbook
+  topics: hashicorp, nomad, server, agent, cluster, ansible, molecule, playbook
