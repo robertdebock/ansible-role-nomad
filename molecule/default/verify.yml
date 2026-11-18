@@ -15,7 +15,7 @@
 
     - name: Initialize example job
       ansible.builtin.command:
-        cmd: nomad init example.nomad
+        cmd: nomad job init example.nomad
       args:
         creates: example.nomad
 
