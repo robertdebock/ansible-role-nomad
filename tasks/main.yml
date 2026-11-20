@@ -63,7 +63,8 @@
   ansible.builtin.command:
     cmd: nomad server members
   register: nomad_list_server_members
-  changed_when: false
+  changed_when:
+    - false
   when:
     - nomad_server
 
@@ -74,4 +75,5 @@
   when:
     - ansible_facts['hostname'] != nomad_server
     - ansible_facts['hostname'] not in nomad_list_server_members.stdout
-  changed_when: true
+  changed_when:
+    - true
